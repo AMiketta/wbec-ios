@@ -25,6 +25,8 @@
 		2989E69227C38A7400F734C0 /* wbecwatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2989E67227C38A6E00F734C0 /* wbecwatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2989E69B27C38AD400F734C0 /* WebSocketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E66C27C3685C00F734C0 /* WebSocketController.swift */; };
 		2989E69C27C38BAB00F734C0 /* WbecWebSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E66E27C3692600F734C0 /* WbecWebSocketResponse.swift */; };
+		2989E69E27C3B4A200F734C0 /* ColorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E69D27C3B4A100F734C0 /* ColorButtonStyle.swift */; };
+		2989E69F27C3B4B000F734C0 /* ColorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E69D27C3B4A100F734C0 /* ColorButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,7 @@
 		2989E68C27C38A7400F734C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2989E68E27C38A7400F734C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2989E68F27C38A7400F734C0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2989E69D27C3B4A100F734C0 /* ColorButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,7 @@
 				2989E66027C3671000F734C0 /* ContentView.swift */,
 				2989E66C27C3685C00F734C0 /* WebSocketController.swift */,
 				2989E66E27C3692600F734C0 /* WbecWebSocketResponse.swift */,
+				2989E69D27C3B4A100F734C0 /* ColorButtonStyle.swift */,
 				2989E66227C3671300F734C0 /* Assets.xcassets */,
 				2989E66427C3671300F734C0 /* Preview Content */,
 			);
@@ -314,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2989E66D27C3685C00F734C0 /* WebSocketController.swift in Sources */,
+				2989E69E27C3B4A200F734C0 /* ColorButtonStyle.swift in Sources */,
 				2989E66F27C3692600F734C0 /* WbecWebSocketResponse.swift in Sources */,
 				2989E66127C3671000F734C0 /* ContentView.swift in Sources */,
 				2989E65F27C3671000F734C0 /* wbec_ios_appApp.swift in Sources */,
@@ -329,6 +334,7 @@
 				2989E68827C38A7200F734C0 /* ComplicationController.swift in Sources */,
 				2989E69C27C38BAB00F734C0 /* WbecWebSocketResponse.swift in Sources */,
 				2989E69B27C38AD400F734C0 /* WebSocketController.swift in Sources */,
+				2989E69F27C3B4B000F734C0 /* ColorButtonStyle.swift in Sources */,
 				2989E68027C38A7200F734C0 /* wbec_ios_appApp.swift in Sources */,
 				2989E68627C38A7200F734C0 /* NotificationView.swift in Sources */,
 			);

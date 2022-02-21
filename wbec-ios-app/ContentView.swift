@@ -48,77 +48,88 @@ struct ContentView: View {
     }
     
     var body: some View {
-       
-        VStack(spacing: 16) {
-            Text("wbec").font(.headline)
-            Text("Heidelberg WallBox Energy Control über ESP8266").font(.subheadline)
-           // Slider(value: $socket.wbecState.currLim)
-            
-            GroupBox(label: Label("Ladeleistung", systemImage: "bolt.fill")
-                        .foregroundColor(.yellow)){
-                IntSlider(score: socket.wbecState.currLim, socket: socket)
-            }
-            GroupBox(label: Label("Status", systemImage: "bolt")
-                        .foregroundColor(.yellow)){
-                HStack(alignment: .firstTextBaseline, spacing: 0){
-                    Text("Stromlimit")
-                    Spacer()
-                    Text("\(String(socket.wbecState.currLim)) A")
-                }
-                HStack(alignment: .firstTextBaseline, spacing: 8){
-                    Text("Fahrzeug verbunden")
-                    Spacer()
-                    Text(carState)
-                }
-                HStack(alignment: .firstTextBaseline, spacing: 8){
-                    Text("Wallbox erlaubt laden")
-                    Spacer()
-                    Text(wbStat)
-                }
-                HStack(alignment: .firstTextBaseline, spacing: 8){
-                    Text("Ladeleistung")
-                    Spacer()
-                    Text("\(socket.wbecState.power) Watt")
-                }
-                HStack(alignment: .firstTextBaseline, spacing: 8){
-                    Text("Energiezähler")
-                    Spacer()
-                    Text("\((socket.wbecState.energyI), specifier: "%.2f") kwh")
-                }
-                HStack(alignment: .firstTextBaseline, spacing: 8){
-                    Text("Bezug(+)/Einsp.(-)")
-                    Spacer()
-                    Text("\(socket.wbecState.watt) Watt")
-                }
+        ScrollView {
+            VStack(spacing: 16) {
+                Text("wbec").font(.largeTitle).foregroundColor(.accentColor).fontWeight(.bold)
+                Text("Heidelberg WallBox Energy Control über ESP8266").font(.subheadline).foregroundColor(.white)
+               // Slider(value: $socket.wbecState.currLim)
                 
-            }
-            GroupBox(label: Label("PV Modus: \(chargingMode)", systemImage: "tablecells.fill")
-                        .foregroundColor(.blue)){
-        
-            HStack(alignment: .center, spacing: 0){
-                Button("Aus") {
-                    socket.updatePVMode(.PV_OFF)
-                }.buttonStyle(.borderedProminent)
+                GroupBox(label: Label("Ladeleistung", systemImage: "bolt.fill")
+                            .foregroundColor(.yellow)){
+                    IntSlider(score: socket.wbecState.currLim, socket: socket).disabled(socket.wbecState.pvMode > 1)
+                }
+                GroupBox(label: Label("Status", systemImage: "bolt")
+                            .foregroundColor(.yellow)){
+                    HStack(alignment: .firstTextBaseline, spacing: 0){
+                        Text("Stromlimit")
+                        Spacer()
+                        Text("\(String(socket.wbecState.currLim)) A")
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: 8){
+                        Text("Fahrzeug verbunden")
+                        Spacer()
+                        Text(carState)
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: 8){
+                        Text("Wallbox erlaubt laden")
+                        Spacer()
+                        Text(wbStat)
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: 8){
+                        Text("Ladeleistung")
+                        Spacer()
+                        Text("\(socket.wbecState.power) Watt")
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: 8){
+                        Text("Energiezähler")
+                        Spacer()
+                        Text("\((socket.wbecState.energyI), specifier: "%.2f") kwh")
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: 8){
+                        Text("Bezug(+)/Einsp.(-)")
+                        Spacer()
+                        Text("\(socket.wbecState.watt) Watt").foregroundColor(socket.wbecState.watt > 0 ? .red : .green)
+                    }
+                    
+                }
+                GroupBox(label: Label("PV Modus:", systemImage: "tablecells.fill")
+                            .foregroundColor(.blue)){
+            
+                HStack(alignment: .center, spacing: 2){
+                    Button(action: { socket.updatePVMode(.PV_OFF) }) {
+                        HStack {
+                            Image(systemName: "bolt")
+                            Text("Aus")
+                        }
+                    }.buttonStyle( ColorButtonStyle(color: socket.wbecState.pvMode == 1 ? .accentColor : .gray))//.background(socket.wbecState.pvMode == 1 ? Color.accentColor : Color.gray)
+                    Spacer()
+                    Button(action: { socket.updatePVMode(.PV_ACTIVE) }) {
+                        HStack {
+                            Image(systemName: "tablecells.fill")
+                            Text("PV")
+                        }
+                    }.buttonStyle(ColorButtonStyle(color: socket.wbecState.pvMode == 2 ? .accentColor : .gray))
+                    Spacer()
+                    Button(action: { socket.updatePVMode(.PV_MIN_PV) }) {
+                        HStack {
+                            Image(systemName: "tablecells.fill")
+                            Image(systemName: "bolt")
+                            Text("PV+Min")
+                        }
+                    }.buttonStyle(ColorButtonStyle(color: socket.wbecState.pvMode == 3 ? .accentColor : .gray))
+                }
+                }
                 Spacer()
-                Button("PV") {
-                    socket.updatePVMode(.PV_ACTIVE)
-                }.buttonStyle(.borderedProminent)
-                Spacer()
-                Button("PV+Min") {
-                    socket.updatePVMode(.PV_MIN_PV)
-                }.buttonStyle(.borderedProminent)
-            }
-            }
-            Spacer()
-            HStack{
-                Text(socket.wbecState.timeNow)
-                .padding()
-            }
-        }.padding()
-        .alert(item: $socket.alertWrapper) { $0.alert }
+                HStack{
+                    Text(socket.wbecState.timeNow).foregroundColor(.white)
+                    .padding()
+                }
+            }.padding()
+            .alert(item: $socket.alertWrapper) { $0.alert }
+        }
     }
-    
 }
+
 
 struct IntSlider: View {
     @State var score: Int = 0
@@ -135,11 +146,18 @@ struct IntSlider: View {
     }
     var body: some View {
         VStack{
-            Text(score.description)
-            Slider(value: intProxy , in: 0.0...16.0, step: 1.0, onEditingChanged: {_ in
+            Text("\(score.description) A")
+            Slider(value: intProxy , in: 0.0...16.0, step: 1.0){
+                Text("Speed")
+            } minimumValueLabel: {
+                Text("0 A")
+            } maximumValueLabel: {
+                Text("16 A")
+            } onEditingChanged: { editing in
+            
                 print(score.description)
                 socket.updateLadeleistung(score)
-            })
+            }
         }
     }
 }

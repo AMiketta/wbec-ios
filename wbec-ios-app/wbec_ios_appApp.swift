@@ -11,7 +11,7 @@ import SwiftUI
 struct wbec_ios_appApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().background(Color("BackGroundColor"))
         }
     }
 }

@@ -20,29 +20,39 @@ struct ContentView: View {
     }
     
     var body: some View {
+        ScrollView {
         VStack{
-            Group{
+                Text("Ladeleistung: \(String(socket.wbecState.power)) Watt")
+                Text("\(socket.wbecState.watt) Watt").foregroundColor(socket.wbecState.watt > 0 ? .red : .green)
                 Label("PV Modus: \(chargingMode)", systemImage: "tablecells.fill")
                             .foregroundColor(.blue)
-                HStack(alignment: .center, spacing: 0){
-                    Button("Aus") {
-                        socket.updatePVMode(.PV_OFF)
-                    }.buttonStyle(.borderedProminent)
-                    Spacer()
-                    Button("PV") {
-                        socket.updatePVMode(.PV_ACTIVE)
-                    }.buttonStyle(.borderedProminent)
-                    Spacer()
-                    Button("PV+Min") {
-                        socket.updatePVMode(.PV_MIN_PV)
-                    }.buttonStyle(.borderedProminent)
+                VStack(alignment: .center, spacing: 8){
+                    Button(action: { socket.updatePVMode(.PV_OFF) }) {
+                        HStack {
+                            Image(systemName: "bolt")
+                            Text("Aus")
+                        }
+                    }.buttonStyle( ColorButtonStyle(color: socket.wbecState.pvMode == 1 ? .accentColor : .gray))
+                    Button(action: { socket.updatePVMode(.PV_ACTIVE) }) {
+                        HStack {
+                            Image(systemName: "tablecells.fill")
+                            Text("PV")
+                        }
+                    }.buttonStyle(ColorButtonStyle(color: socket.wbecState.pvMode == 2 ? .accentColor : .gray))
+                    Button(action: { socket.updatePVMode(.PV_MIN_PV) }) {
+                        HStack {
+                            Image(systemName: "tablecells.fill")
+                            Image(systemName: "bolt")
+                            Text("PV+Min")
+                        }
+                    }.buttonStyle(ColorButtonStyle(color: socket.wbecState.pvMode == 3 ? .accentColor : .gray))
                 }
                 HStack{
                     Text(socket.wbecState.timeNow)
                     .padding()
                 }
-            }
         }.alert(item: $socket.alertWrapper) { $0.alert }
+        }
     }
 }
 
