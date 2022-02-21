@@ -52,7 +52,6 @@ struct ContentView: View {
             VStack(spacing: 16) {
                 Text("wbec").font(.largeTitle).foregroundColor(.accentColor).fontWeight(.bold)
                 Text("Heidelberg WallBox Energy Control über ESP8266").font(.subheadline).foregroundColor(.white)
-               // Slider(value: $socket.wbecState.currLim)
                 
                 GroupBox(label: Label("Ladeleistung", systemImage: "bolt.fill")
                             .foregroundColor(.yellow)){
@@ -133,7 +132,7 @@ struct ContentView: View {
 
 struct IntSlider: View {
     @State var score: Int = 0
-    var socket: WebSocketController
+    @ObservedObject var socket: WebSocketController
     var intProxy: Binding<Double>{
         Binding<Double>(get: {
             //returns the score as a Double
@@ -146,7 +145,7 @@ struct IntSlider: View {
     }
     var body: some View {
         VStack{
-            Text("\(score.description) A")
+            Text("\(socket.wbecState.currLim.description) A")
             Slider(value: intProxy , in: 0.0...16.0, step: 1.0){
                 Text("Speed")
             } minimumValueLabel: {

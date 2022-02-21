@@ -56,7 +56,11 @@ final class WebSocketController: ObservableObject {
        }
     }
     
+    var leistungOld = -1
+    
     func updateLadeleistung(_ leistung: Int) {
+        guard leistung != leistungOld, leistung != wbecState.currLim else { return }
+        leistungOld = leistung
         self.socket.send(.string("currLim=\(leistung * 10)")){ (err) in
             if err != nil {
                 DispatchQueue.main.async {
@@ -71,6 +75,7 @@ final class WebSocketController: ObservableObject {
       let sinData = try decoder.decode(WbecWebSocketResponse.self, from: data)
         DispatchQueue.main.async {
             self.wbecState = sinData
+            self.leistungOld = sinData.currLim
         }
     } catch {
       print(error)
