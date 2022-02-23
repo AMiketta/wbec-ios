@@ -9,7 +9,8 @@ import Foundation
 struct WbecWebSocketResponse: Codable {
     let id, chgStat, power: Int
     let energyI: Double
-    var currLim, watt, pvMode: Int
+    var watt, pvMode: Int
+    var currLim: Double
     let timeNow: String
 }
 

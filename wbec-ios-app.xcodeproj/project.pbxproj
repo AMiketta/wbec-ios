@@ -22,7 +22,7 @@
 		2989E68827C38A7200F734C0 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E68727C38A7200F734C0 /* ComplicationController.swift */; };
 		2989E68A27C38A7400F734C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2989E68927C38A7400F734C0 /* Assets.xcassets */; };
 		2989E68D27C38A7400F734C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2989E68C27C38A7400F734C0 /* Preview Assets.xcassets */; };
-		2989E69227C38A7400F734C0 /* wbecwatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2989E67227C38A6E00F734C0 /* wbecwatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2989E69227C38A7400F734C0 /* wbec.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2989E67227C38A6E00F734C0 /* wbec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2989E69B27C38AD400F734C0 /* WebSocketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E66C27C3685C00F734C0 /* WebSocketController.swift */; };
 		2989E69C27C38BAB00F734C0 /* WbecWebSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E66E27C3692600F734C0 /* WbecWebSocketResponse.swift */; };
 		2989E69E27C3B4A200F734C0 /* ColorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E69D27C3B4A100F734C0 /* ColorButtonStyle.swift */; };
@@ -64,7 +64,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				2989E69227C38A7400F734C0 /* wbecwatch.app in Embed Watch Content */,
+				2989E69227C38A7400F734C0 /* wbec.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,14 +72,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2989E65B27C3671000F734C0 /* wbec ios app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wbec ios app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2989E65B27C3671000F734C0 /* wbec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wbec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2989E65E27C3671000F734C0 /* wbec_ios_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wbec_ios_appApp.swift; sourceTree = "<group>"; };
 		2989E66027C3671000F734C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2989E66227C3671300F734C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2989E66527C3671300F734C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2989E66C27C3685C00F734C0 /* WebSocketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketController.swift; sourceTree = "<group>"; };
 		2989E66E27C3692600F734C0 /* WbecWebSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WbecWebSocketResponse.swift; sourceTree = "<group>"; };
-		2989E67227C38A6E00F734C0 /* wbecwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wbecwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2989E67227C38A6E00F734C0 /* wbec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wbec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2989E67427C38A7200F734C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2989E67A27C38A7200F734C0 /* wbecwatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "wbecwatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2989E67F27C38A7200F734C0 /* wbec_ios_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wbec_ios_appApp.swift; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 		2989E65C27C3671000F734C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2989E65B27C3671000F734C0 /* wbec ios app.app */,
-				2989E67227C38A6E00F734C0 /* wbecwatch.app */,
+				2989E65B27C3671000F734C0 /* wbec.app */,
+				2989E67227C38A6E00F734C0 /* wbec.app */,
 				2989E67A27C38A7200F734C0 /* wbecwatch WatchKit Extension.appex */,
 			);
 			name = Products;
@@ -189,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2989E65A27C3671000F734C0 /* wbec-ios-app */ = {
+		2989E65A27C3671000F734C0 /* wbec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2989E66927C3671300F734C0 /* Build configuration list for PBXNativeTarget "wbec-ios-app" */;
+			buildConfigurationList = 2989E66927C3671300F734C0 /* Build configuration list for PBXNativeTarget "wbec" */;
 			buildPhases = (
 				2989E65727C3671000F734C0 /* Sources */,
 				2989E65827C3671000F734C0 /* Frameworks */,
@@ -203,9 +203,9 @@
 			dependencies = (
 				2989E69127C38A7400F734C0 /* PBXTargetDependency */,
 			);
-			name = "wbec-ios-app";
+			name = wbec;
 			productName = "wbec-ios-app";
-			productReference = 2989E65B27C3671000F734C0 /* wbec ios app.app */;
+			productReference = 2989E65B27C3671000F734C0 /* wbec.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2989E67127C38A6E00F734C0 /* wbecwatch */ = {
@@ -222,7 +222,7 @@
 			);
 			name = wbecwatch;
 			productName = wbecwatch;
-			productReference = 2989E67227C38A6E00F734C0 /* wbecwatch.app */;
+			productReference = 2989E67227C38A6E00F734C0 /* wbec.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		2989E67927C38A7200F734C0 /* wbecwatch WatchKit Extension */ = {
@@ -276,7 +276,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2989E65A27C3671000F734C0 /* wbec-ios-app */,
+				2989E65A27C3671000F734C0 /* wbec */,
 				2989E67127C38A6E00F734C0 /* wbecwatch */,
 				2989E67927C38A7200F734C0 /* wbecwatch WatchKit Extension */,
 			);
@@ -493,8 +493,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.miketta.wbec-ios-app";
-				PRODUCT_NAME = "wbec ios app";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketta.wbec;
+				PRODUCT_NAME = wbec;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -522,8 +522,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.miketta.wbec-ios-app";
-				PRODUCT_NAME = "wbec ios app";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketta.wbec;
+				PRODUCT_NAME = wbec;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,7 +550,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.miketta.wbec-ios-app.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketta.wbec.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -581,7 +581,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.miketta.wbec-ios-app.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketta.wbec.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -604,10 +604,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = wbecwatch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.miketta.wbec-ios-app";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.miketta.wbec;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.miketta.wbec-ios-app.watchkitapp";
-				PRODUCT_NAME = wbecwatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketta.wbec.watchkitapp;
+				PRODUCT_NAME = wbec;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -629,10 +629,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = wbecwatch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.miketta.wbec-ios-app";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.miketta.wbec;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.miketta.wbec-ios-app.watchkitapp";
-				PRODUCT_NAME = wbecwatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketta.wbec.watchkitapp;
+				PRODUCT_NAME = wbec;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -654,7 +654,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2989E66927C3671300F734C0 /* Build configuration list for PBXNativeTarget "wbec-ios-app" */ = {
+		2989E66927C3671300F734C0 /* Build configuration list for PBXNativeTarget "wbec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2989E66A27C3671300F734C0 /* Debug */,

@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 struct AlertWrapper: Identifiable {
   let id = UUID()
@@ -8,7 +9,30 @@ struct AlertWrapper: Identifiable {
 
 final class WebSocketController: ObservableObject {
   @Published var wbecState: WbecWebSocketResponse
+  @Published var deduplicatedState: WbecWebSocketResponse
   @Published var alertWrapper: AlertWrapper?
+    
+    lazy var updatedCurrLimPublisher: AnyPublisher<Double, Never> = {
+        return $wbecState
+            .removeDuplicates {
+                return  $0.currLim == $1.currLim
+            }
+        //.print()
+            .flatMap { newstate in
+                return Future<Double, Never> { promise in
+                    return promise(.success(newstate.currLim))
+             }
+            }
+
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }()
+    
+//    _ = socket.$wbecState.removeDuplicates {
+//         return $0.currLim != $1.currLim
+//    }.onch {
+//         current = $0.currLim
+//     }
   
   var alert: Alert? {
     didSet {
@@ -25,13 +49,16 @@ final class WebSocketController: ObservableObject {
   private let decoder = JSONDecoder()
   private let encoder = JSONEncoder()
   
-  init() {
-      self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, currLim: 0, watt: 0, pvMode: 0, timeNow: "-")
+    init(_ connect: Bool = true) {
+        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
+        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
     self.alertWrapper = nil
     self.alert = nil
     
     self.session = URLSession(configuration: .default)
-    self.connect()
+    if connect {
+        self.connect()
+    }
   }
   
   func connect() {
@@ -56,9 +83,9 @@ final class WebSocketController: ObservableObject {
        }
     }
     
-    var leistungOld = -1
+    var leistungOld: Double = -1.0
     
-    func updateLadeleistung(_ leistung: Int) {
+    func updateLadeleistung(_ leistung: Double) {
         guard leistung != leistungOld, leistung != wbecState.currLim else { return }
         leistungOld = leistung
         self.socket.send(.string("currLim=\(leistung * 10)")){ (err) in
@@ -92,8 +119,9 @@ final class WebSocketController: ObservableObject {
         print(error)
         // 3
         let alert = Alert(
-            title: Text("Unable to connect to server!"),
-            dismissButton: .default(Text("Retry")) {
+            title: Text("Keine Verbindung zum wbec möglich!"),
+            message: Text("Stelle sicher das du dich im selben WLAN befindest wie das wbec"),
+            dismissButton: .default(Text("Wiederholen")) {
               self.alert = nil
               self.socket.cancel(with: .goingAway, reason: nil)
               self.connect()
