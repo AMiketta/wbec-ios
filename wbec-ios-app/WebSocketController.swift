@@ -8,16 +8,34 @@ struct AlertWrapper: Identifiable {
 }
 
 final class WebSocketController: ObservableObject {
-  @Published var wbecState: WbecWebSocketResponse
-  @Published var deduplicatedState: WbecWebSocketResponse
-  @Published var alertWrapper: AlertWrapper?
+    @Published var wbecState: WbecWebSocketResponse
+    @Published var deduplicatedState: WbecWebSocketResponse
+    @Published var alertWrapper: AlertWrapper?
+    
+    private var id: UUID!
+    private let session: URLSession
+    private var leistungOld: Double = -1.0
+    private var socket: URLSessionWebSocketTask!
+    private let decoder = JSONDecoder()
+    private let encoder = JSONEncoder()
+    
+    init(_ connect: Bool = true) {
+        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
+        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
+        self.alertWrapper = nil
+        self.alert = nil
+        
+        self.session = URLSession(configuration: .default)
+        if connect {
+            self.connect()
+        }
+    }
     
     lazy var updatedCurrLimPublisher: AnyPublisher<Double, Never> = {
         return $wbecState
             .removeDuplicates {
                 return  $0.currLim == $1.currLim
             }
-        //.print()
             .flatMap { newstate in
                 return Future<Double, Never> { promise in
                     return promise(.success(newstate.currLim))
@@ -27,45 +45,21 @@ final class WebSocketController: ObservableObject {
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     }()
-    
-//    _ = socket.$wbecState.removeDuplicates {
-//         return $0.currLim != $1.currLim
-//    }.onch {
-//         current = $0.currLim
-//     }
   
-  var alert: Alert? {
-    didSet {
-      guard let a = self.alert else { return }
-      DispatchQueue.main.async {
-        self.alertWrapper = .init(alert: a)
+    var alert: Alert? {
+      didSet {
+        guard let a = self.alert else { return }
+        DispatchQueue.main.async {
+          self.alertWrapper = .init(alert: a)
+        }
       }
     }
-  }
-  
-  private var id: UUID!
-  private let session: URLSession
-  var socket: URLSessionWebSocketTask!
-  private let decoder = JSONDecoder()
-  private let encoder = JSONEncoder()
-  
-    init(_ connect: Bool = true) {
-        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
-        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
-    self.alertWrapper = nil
-    self.alert = nil
-    
-    self.session = URLSession(configuration: .default)
-    if connect {
-        self.connect()
+
+    func connect() {
+      self.socket = session.webSocketTask(with: URL(string: "ws://wbec:81/")!)
+      self.listen()
+      self.socket.resume()
     }
-  }
-  
-  func connect() {
-    self.socket = session.webSocketTask(with: URL(string: "ws://wbec:81/")!)
-    self.listen()
-    self.socket.resume()
-  }
     
     enum pvMode: String {
         case PV_OFF
@@ -73,17 +67,15 @@ final class WebSocketController: ObservableObject {
         case PV_MIN_PV
     }
   
-   func updatePVMode(_ mode: pvMode) {
-       self.socket.send(.string(mode.rawValue)){ (err) in
-           if err != nil {
-               DispatchQueue.main.async {
-                   print(err.debugDescription)
-               }
-           }
-       }
-    }
-    
-    var leistungOld: Double = -1.0
+    func updatePVMode(_ mode: pvMode) {
+        self.socket.send(.string(mode.rawValue)){ (err) in
+            if err != nil {
+                DispatchQueue.main.async {
+                    print(err.debugDescription)
+                }
+            }
+        }
+     }
     
     func updateLadeleistung(_ leistung: Double) {
         guard leistung != leistungOld, leistung != wbecState.currLim else { return }
@@ -111,14 +103,11 @@ final class WebSocketController: ObservableObject {
   }
   
   func listen() {
-    // 1
     self.socket.receive { [weak self] (result) in
       guard let self = self else { return }
-      // 2
       switch result {
       case .failure(let error):
         print(error)
-        // 3
         let alert = Alert(
             title: Text("Keine Verbindung zum wbec möglich!"),
             message: Text("Stelle sicher das du dich im selben WLAN befindest wie das wbec"),
@@ -131,7 +120,6 @@ final class WebSocketController: ObservableObject {
         self.alert = alert
         return
       case .success(let message):
-        // 4
         switch message {
         case .data(let data):
           self.handle(data)
@@ -142,7 +130,6 @@ final class WebSocketController: ObservableObject {
           break
         }
       }
-      // 5
       self.listen()
     }
   }

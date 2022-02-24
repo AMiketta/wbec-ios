@@ -9,9 +9,27 @@ import SwiftUI
 
 @main
 struct wbec_ios_appApp: App {
+    init(){
+        UITabBar.appearance().barTintColor = UIColor(Color("BackGroundColor"))
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView().background(Color("BackGroundColor"))
+            TabView {
+                NavigationView {
+                    ContentView()
+                    
+                }.tabItem {
+                    Image(systemName: "bolt.car")
+                    Text("Wallbox")
+                }
+                NavigationView {
+                    ConfigurationView().navigationTitle("Settings")
+                }.tabItem {
+                    Image(systemName: "pencil.circle")
+                    Text("Settings")
+                }
+            }.accentColor(.white)
         }
     }
 }
