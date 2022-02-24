@@ -75,7 +75,7 @@ struct ContentView: View {
                             socket.updateLadeleistung(currLim)
                         }.onReceive(socket.updatedCurrLimPublisher){
                             self.currLim = $0
-                        }
+                        }.disabled(socket.wbecState.pvMode > 1)
                     }
                 }
                 GroupBox(label: Label("PV Modus", systemImage: "tablecells.fill")
@@ -105,20 +105,26 @@ struct ContentView: View {
                     }.buttonStyle(ColorButtonStyle(color: socket.wbecState.pvMode == 3 ? .accentColor : .gray))
                 }
                 }
+                
                 LazyVGrid(columns: [.init(), .init()]) {
-                    GroupBox(label: Label("Stromlimit", systemImage: "bolt")
+                    // Geladene KW
+                    GroupBox(label: Label("Geladen", systemImage: "bolt")
                                 .foregroundColor(.red)){
-                        Text("\(String(socket.wbecState.currLim)) A")
+                        Text("\((socket.wbecState.energyIP), specifier: "%.2f") Kw")
                             .fontWeight(.bold)
                             .padding()
                         
                     }
-                    GroupBox(label: Label("Energiezähler", systemImage: "bolt.fill")
-                                .foregroundColor(.green)){
-                        Text("\((socket.wbecState.energyI), specifier: "%.2f") kwh")
+                    
+                    // Ladeleistung
+                    GroupBox(label: Label("Ladeleistung", systemImage: "bolt.car")
+                                ){
+                        Text("\(socket.wbecState.power) Watt")
                             .fontWeight(.bold)
                             .padding()
                     }
+                    
+                    // Verbindunstatus
                     GroupBox(label: Label("verbunden", systemImage: "car")
                                ){
                         Text(carState)
@@ -126,19 +132,24 @@ struct ContentView: View {
                             .padding()
                             .foregroundColor(socket.wbecState.chgStat < 4 ? .red : .green)
                     }
+                    
+                    // Wallbox erlaubt laden
                     GroupBox(label: Label("Wallbox erlaubt laden", systemImage: wbStat == "nein" ? "lock" : "lock.open")
                                ){
                         Text(wbStat)
                             .fontWeight(.bold)
                             .padding()
                     }
-                    GroupBox(label: Label("Ladeleistung", systemImage: "bolt.car")
-                                .foregroundColor(.black)){
-                        Text("\(socket.wbecState.power) Watt")
+                    
+                    // Energiezähler
+                    GroupBox(label: Label("Energiezähler", systemImage: "bolt.fill")
+                                .foregroundColor(.green)){
+                        Text("\((socket.wbecState.energyI), specifier: "%.2f") kwh")
                             .fontWeight(.bold)
                             .padding()
                     }
                     
+                    // Bezug / Einspeisung
                     GroupBox(label: Label(socket.wbecState.watt > 0 ? "Bezug" : "Einspeisung", systemImage: "house.fill")
                                 ){
                         Label("\(socket.wbecState.watt > 0 ? socket.wbecState.watt : socket.wbecState.watt * -1) Watt", systemImage: socket.wbecState.watt > 0 ? "arrow.down" : "arrow.up" )

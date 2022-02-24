@@ -12,19 +12,19 @@ import Combine
 class ComplicationController: NSObject, CLKComplicationDataSource {
     
     // MARK: - Complication Configuration
-    let service: WebSocketController = .init(false)
+   // let service: WebSocketController = .init(false)
     var cancelable: AnyCancellable?
     var dataArray: [Double] = []
     func requestedUpdateDidBegin() {
-        service.connect()
-        cancelable = service.$wbecState.sink(receiveValue: { data in
-            self.dataArray.append(data.currLim)
-        })
+       // service.connect()
+       // cancelable = service.$wbecState.sink(receiveValue: { data in
+       //     self.dataArray.append(data.currLim)
+       // })
     }
     
     func requestedUpdateBudgetExhausted() {
-        self.cancelable?.cancel()
-        self.service.socket.cancel(with: .goingAway, reason: nil)
+       // self.cancelable?.cancel()
+       // self.service.socket.cancel(with: .goingAway, reason: nil)
     }
     
     let supportedFamilies: [CLKComplicationFamily] = [CLKComplicationFamily.circularSmall, CLKComplicationFamily.graphicCircular]

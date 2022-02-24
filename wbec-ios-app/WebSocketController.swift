@@ -50,8 +50,8 @@ final class WebSocketController: ObservableObject {
   private let encoder = JSONEncoder()
   
     init(_ connect: Bool = true) {
-        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
-        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
+        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
+        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
     self.alertWrapper = nil
     self.alert = nil
     
@@ -88,7 +88,8 @@ final class WebSocketController: ObservableObject {
     func updateLadeleistung(_ leistung: Double) {
         guard leistung != leistungOld, leistung != wbecState.currLim else { return }
         leistungOld = leistung
-        self.socket.send(.string("currLim=\(leistung * 10)")){ (err) in
+        let leistungNew = leistung > 0.0 && leistung < 6.0  ? 6.0 : leistung
+        self.socket.send(.string("currLim=\(leistungNew * 10)")){ (err) in
             if err != nil {
                 DispatchQueue.main.async {
                     print(err.debugDescription)
