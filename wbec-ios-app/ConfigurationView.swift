@@ -25,29 +25,49 @@ struct ConfigurationView: View {
                         TextField("Access point SSID", text: $configController.viewModel.cfgApSSID)
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true).multilineTextAlignment(.leading)
-                    }
+                    }.foregroundColor(.primary)
                     HStack {
                         Text("Password:")
                         TextField("Password", text: $configController.viewModel.cfgApPass)
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true)
-                    }
+                    }.foregroundColor(.primary)
                   
-                }
+                }.foregroundColor(.white)
                 Section(header: Text("Wechselrichter")) {
-                    TextField("Ip (192.168.178.68)", text: $configController.viewModel.cfgSolarEdgeIP)
-                    .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-                    TextField("Cycle Time", value: $configController.viewModel.cfgSolarEdgeCycleTime, formatter: NumberFormatter())
-                }
+                    HStack {
+                        Text("Ip:")
+                        TextField("Ip (192.168.178.68)", text: $configController.viewModel.cfgSolarEdgeIP)
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                    }.foregroundColor(.primary)
+                    HStack {
+                        Text("Cycle Time:")
+                        TextField("Cycle Time", value: $configController.viewModel.cfgSolarEdgeCycleTime, formatter: NumberFormatter())
+                    }.foregroundColor(.primary)
+                }.foregroundColor(.white)
                 Section(header: Text("PV")) {
-                    TextField("PV Cycle Time", value: $configController.viewModel.cfgPVCycleTime, formatter: NumberFormatter())
-                    TextField("Factor", value: $configController.viewModel.cfgPVPhFactor, formatter: NumberFormatter())
-                    TextField("Limit Stop", value: $configController.viewModel.cfgPVLimStop, formatter: NumberFormatter())
-                }
+                    HStack {
+                        Text("PV Cycle Time")
+                        TextField("PV Cycle Time", value: $configController.viewModel.cfgPVCycleTime, formatter: NumberFormatter())
+                    }.foregroundColor(.primary)
+                    HStack {
+                        Text("Factor")
+                        TextField("Factor", value: $configController.viewModel.cfgPVPhFactor, formatter: NumberFormatter())
+                    }.foregroundColor(.primary)
+                    HStack {
+                        Text("Limit Stop")
+                        TextField("Limit Stop", value: $configController.viewModel.cfgPVLimStop, formatter: NumberFormatter())
+                    }.foregroundColor(.primary)
+                }.foregroundColor(.white)
                 Button("Save"){
                     configController.saveConfig()
-                }
+                }.foregroundColor(.primary)
+            }.onAppear { // ADD THESE
+                UITableView.appearance().backgroundColor = .clear
+            }
+            .onDisappear {
+                UITableView.appearance().backgroundColor = .systemGroupedBackground
             }.background(Color("BackGroundColor"))
         }
     }
