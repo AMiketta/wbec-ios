@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - WbecWebSocketResponse
-struct WbecWebSocketResponse: Codable {
+struct WbecWebSocketResponse: Hashable,Codable {
     let id, chgStat, power: Int
     let energyI: Double
     let energyIP: Double

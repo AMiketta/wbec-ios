@@ -23,13 +23,16 @@ struct wbec_ios_appApp: App {
                     Image(systemName: "bolt.car")
                     Text("Wallbox")
                 }
+
                 NavigationView {
                     ConfigurationView().navigationTitle("Settings")
                 }.tabItem {
                     Image(systemName: "pencil.circle")
                     Text("Settings")
                 }
+
             }.accentColor(.white)
         }
+        
     }
 }

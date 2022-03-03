@@ -11,6 +11,8 @@
 		2967570227C7BA8F00409EAF /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570127C7BA8F00409EAF /* ConfigurationView.swift */; };
 		2967570427C7BC4500409EAF /* WbecConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570327C7BC4500409EAF /* WbecConfiguration.swift */; };
 		2967570627C7CCE100409EAF /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570527C7CCE100409EAF /* NavigationBarModifier.swift */; };
+		2967570827C902D500409EAF /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2967570727C902D500409EAF /* info.plist */; };
+		2967570A27C91D5F00409EAF /* CoffeeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570927C91D5F00409EAF /* CoffeeData.swift */; };
 		2989E65F27C3671000F734C0 /* wbec_ios_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E65E27C3671000F734C0 /* wbec_ios_appApp.swift */; };
 		2989E66127C3671000F734C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E66027C3671000F734C0 /* ContentView.swift */; };
 		2989E66327C3671300F734C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2989E66227C3671300F734C0 /* Assets.xcassets */; };
@@ -80,6 +82,8 @@
 		2967570127C7BA8F00409EAF /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		2967570327C7BC4500409EAF /* WbecConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WbecConfiguration.swift; sourceTree = "<group>"; };
 		2967570527C7CCE100409EAF /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
+		2967570727C902D500409EAF /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		2967570927C91D5F00409EAF /* CoffeeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeData.swift; sourceTree = "<group>"; };
 		2989E65B27C3671000F734C0 /* wbec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wbec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2989E65E27C3671000F734C0 /* wbec_ios_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wbec_ios_appApp.swift; sourceTree = "<group>"; };
 		2989E66027C3671000F734C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				2989E66427C3671300F734C0 /* Preview Content */,
 				2967570327C7BC4500409EAF /* WbecConfiguration.swift */,
 				296756FD27C761B200409EAF /* StoreConfigRequest.swift */,
+				2967570727C902D500409EAF /* info.plist */,
 			);
 			path = "wbec-ios-app";
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				2989E67F27C38A7200F734C0 /* wbec_ios_appApp.swift */,
+				2967570927C91D5F00409EAF /* CoffeeData.swift */,
 				2989E68127C38A7200F734C0 /* ContentView.swift */,
 				2989E68327C38A7200F734C0 /* NotificationController.swift */,
 				2989E68527C38A7200F734C0 /* NotificationView.swift */,
@@ -302,6 +308,7 @@
 			files = (
 				2989E66627C3671300F734C0 /* Preview Assets.xcassets in Resources */,
 				2989E66327C3671300F734C0 /* Assets.xcassets in Resources */,
+				2967570827C902D500409EAF /* info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +360,7 @@
 				2989E69F27C3B4B000F734C0 /* ColorButtonStyle.swift in Sources */,
 				2989E68027C38A7200F734C0 /* wbec_ios_appApp.swift in Sources */,
 				2989E68627C38A7200F734C0 /* NotificationView.swift in Sources */,
+				2967570A27C91D5F00409EAF /* CoffeeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
