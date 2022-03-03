@@ -48,7 +48,7 @@ struct ConfigurationView: View {
                 }.foregroundColor(.white)
                 Section(header: Text("PV")) {
                     HStack {
-                        Text("PV Cycle Time")
+                        Text("Cycle Time")
                         TextField("PV Cycle Time", value: $configController.viewModel.cfgPVCycleTime, formatter: NumberFormatter())
                     }.foregroundColor(.primary)
                     HStack {
@@ -63,11 +63,8 @@ struct ConfigurationView: View {
                 Button("Save"){
                     configController.saveConfig()
                 }.foregroundColor(.primary)
-            }.onAppear { // ADD THESE
+            }.onAppear {
                 UITableView.appearance().backgroundColor = .clear
-            }
-            .onDisappear {
-                UITableView.appearance().backgroundColor = .systemGroupedBackground
             }.background(Color("BackGroundColor"))
         }
     }
