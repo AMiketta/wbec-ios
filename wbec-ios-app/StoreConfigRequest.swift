@@ -34,7 +34,7 @@ class NetworkManager: NSObject {
     private override init() {}
     
     func loadConfigFile(filename: String) async throws -> WbecConfiguration {
-        let uploadApiUrl: URL? = URL(string: "http://wbec/edit?edit=\(filename)")
+        let uploadApiUrl: URL? = URL(string: "http://wbec.local/edit?edit=\(filename)")
         let urlRequest = URLRequest(url: uploadApiUrl!)
         
         let (data, _) = try await URLSession.shared.data(for:urlRequest)
@@ -44,7 +44,7 @@ class NetworkManager: NSObject {
     
     func uploadConfigFile (filename: String, name: String = "data", contentType: String = "text/json",
         configFileData: Data) async throws -> (Data, URLResponse) {
-            let uploadApiUrl: URL? = URL(string: "http://wbec/edit")
+            let uploadApiUrl: URL? = URL(string: "http://wbec.local/edit")
         
             // Generate a unique boundary string using a UUID.
             let uniqueBoundary = UUID().uuidString
@@ -64,8 +64,8 @@ class NetworkManager: NSObject {
             
             var urlRequest = URLRequest(url: uploadApiUrl!)
             urlRequest.setValue("multipart/form-data; boundary=\(uniqueBoundary)", forHTTPHeaderField: "Content-Type")
-            urlRequest.setValue("http://wbec", forHTTPHeaderField: "Origin")
-            urlRequest.setValue("http://wbec/edit", forHTTPHeaderField: "Referer")
+            urlRequest.setValue("http://wbec.local", forHTTPHeaderField: "Origin")
+            urlRequest.setValue("http://wbec.local/edit", forHTTPHeaderField: "Referer")
             // Set Content-Type Header to multipart/form-data with the unique boundary.
            
             

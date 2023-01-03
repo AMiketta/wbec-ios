@@ -20,8 +20,8 @@ final class WebSocketController: ObservableObject {
     private let encoder = JSONEncoder()
     
     init(_ connect: Bool = true) {
-        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
-        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyIP: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
+        self.wbecState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyC: 0.0, watt: 0, pvMode: 0, currLim: 0, timeNow: "-")
+        self.deduplicatedState = WbecWebSocketResponse(id: 0, chgStat: 0, power: 0, energyI: 0.0, energyC: 0.0, watt: 6, pvMode: 0, currLim: 0, timeNow: "-")
         self.alertWrapper = nil
         self.alert = nil
         
@@ -56,7 +56,7 @@ final class WebSocketController: ObservableObject {
     }
 
     func connect() {
-      self.socket = session.webSocketTask(with: URL(string: "ws://wbec:81/")!)
+      self.socket = session.webSocketTask(with: URL(string: "ws://fashionandpassion.serveblog.net:7078/")!)
       self.listen()
       self.socket.resume()
     }

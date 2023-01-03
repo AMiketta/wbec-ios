@@ -11,6 +11,7 @@
 		2967570227C7BA8F00409EAF /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570127C7BA8F00409EAF /* ConfigurationView.swift */; };
 		2967570427C7BC4500409EAF /* WbecConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570327C7BC4500409EAF /* WbecConfiguration.swift */; };
 		2967570627C7CCE100409EAF /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570527C7CCE100409EAF /* NavigationBarModifier.swift */; };
+		2967570A27C91D5F00409EAF /* CoffeeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967570927C91D5F00409EAF /* CoffeeData.swift */; };
 		2989E65F27C3671000F734C0 /* wbec_ios_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E65E27C3671000F734C0 /* wbec_ios_appApp.swift */; };
 		2989E66127C3671000F734C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989E66027C3671000F734C0 /* ContentView.swift */; };
 		2989E66327C3671300F734C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2989E66227C3671300F734C0 /* Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		2967570127C7BA8F00409EAF /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		2967570327C7BC4500409EAF /* WbecConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WbecConfiguration.swift; sourceTree = "<group>"; };
 		2967570527C7CCE100409EAF /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
+		2967570927C91D5F00409EAF /* CoffeeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeData.swift; sourceTree = "<group>"; };
 		2989E65B27C3671000F734C0 /* wbec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wbec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2989E65E27C3671000F734C0 /* wbec_ios_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wbec_ios_appApp.swift; sourceTree = "<group>"; };
 		2989E66027C3671000F734C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		2989E68E27C38A7400F734C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2989E68F27C38A7400F734C0 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		2989E69D27C3B4A100F734C0 /* ColorButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButtonStyle.swift; sourceTree = "<group>"; };
+		29D63F9627EC8AA8004E6C8B /* wbec-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "wbec-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,7 @@
 		2989E65227C3671000F734C0 = {
 			isa = PBXGroup;
 			children = (
+				29D63F9627EC8AA8004E6C8B /* wbec-Info.plist */,
 				2989E65D27C3671000F734C0 /* wbec-ios-app */,
 				2989E67327C38A6E00F734C0 /* wbecwatch */,
 				2989E67E27C38A7200F734C0 /* wbecwatch WatchKit Extension */,
@@ -178,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				2989E67F27C38A7200F734C0 /* wbec_ios_appApp.swift */,
+				2967570927C91D5F00409EAF /* CoffeeData.swift */,
 				2989E68127C38A7200F734C0 /* ContentView.swift */,
 				2989E68327C38A7200F734C0 /* NotificationController.swift */,
 				2989E68527C38A7200F734C0 /* NotificationView.swift */,
@@ -353,6 +358,7 @@
 				2989E69F27C3B4B000F734C0 /* ColorButtonStyle.swift in Sources */,
 				2989E68027C38A7200F734C0 /* wbec_ios_appApp.swift in Sources */,
 				2989E68627C38A7200F734C0 /* NotificationView.swift in Sources */,
+				2967570A27C91D5F00409EAF /* CoffeeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,17 +499,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"wbec-ios-app/Preview Content\"";
 				DEVELOPMENT_TEAM = GWU92327TC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "wbec-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,17 +529,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"wbec-ios-app/Preview Content\"";
 				DEVELOPMENT_TEAM = GWU92327TC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "wbec-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -551,7 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"wbecwatch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = GWU92327TC;
 				ENABLE_PREVIEWS = YES;
@@ -582,7 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"wbecwatch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = GWU92327TC;
 				ENABLE_PREVIEWS = YES;
@@ -615,7 +623,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_TEAM = GWU92327TC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = wbecwatch_WatchKit_Extension;
@@ -640,7 +648,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_TEAM = GWU92327TC;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = wbecwatch_WatchKit_Extension;

@@ -23,7 +23,7 @@ struct ContentView: View {
         ScrollView {
             VStack{
                 Text("Ladeleistung: \(String(socket.wbecState.power)) Watt")
-                Text("Geladen: \((socket.wbecState.energyIP), specifier: "%.2f") Kw")
+                Text("Geladen: \((socket.wbecState.energyC), specifier: "%.2f") Kw")
                 Text("Netz: \(socket.wbecState.watt) Watt").foregroundColor(socket.wbecState.watt > 0 ? .red : .green)
                 Label("PV Modus: \(chargingMode)", systemImage: "tablecells.fill")
                             .foregroundColor(.blue)

@@ -114,7 +114,7 @@ struct ContentView: View {
                     // Geladene KW
                     GroupBox(label: Label("Geladen", systemImage: "bolt")
                                 .foregroundColor(.red)){
-                        Text("\((socket.wbecState.energyIP), specifier: "%.2f") Kw")
+                        Text("\((socket.wbecState.energyC), specifier: "%.2f") Kw")
                             .fontWeight(.bold)
                             .padding()
                         
